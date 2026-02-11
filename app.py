@@ -13,8 +13,8 @@ PASSWORD = "1234"
 RUTA_BASE_1 = "Carpeta Reservada"
 
 # ⚙️ ========== CAMBIA SOLO ESTAS 2 LÍNEAS ========== ⚙️
-BREVO_API_KEY = "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"  # ← 1️⃣ PEGA tu API Key de Brevo
-EMAIL_SENDER = "ivsasafo30@hotmail.com"              # ← 2️⃣ PON el email que quieras que aparezca
+BREVO_API_KEY = st.secrets["brevo"]["api_key"]
+EMAIL_SENDER = st.secrets["email"]["sender"]            # ← 2️⃣ PON el email que quieras que aparezca
 # ⚙️ ================================================= ⚙️
 
 if "acceso_reservado" not in st.session_state:

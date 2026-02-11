@@ -1,0 +1,12 @@
+# Secretos - NO subir
+.streamlit/
+secrets.toml
+*.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Entorno virtual
+venv/
+env/
