@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import requests  
 import base64   
-
+from streamlit_pdf_viewer import pdf_viewer  # ← AGREGAR ESTA LÍNEA
 
 
 st.title("Expedientes 📂")
@@ -127,14 +127,9 @@ with st.expander(f"📁 {EXPEDIENTE_NOMBRE}", expanded=False):
                                 if st.button("👁️ Ver", key=f"ver_pub_{ruta_completa}"):
                                     st.session_state[f"mostrar_{ruta_completa}"] = not st.session_state.get(f"mostrar_{ruta_completa}", False)
 
-                            # Justo DESPUÉS de las columnas (fuera del with col):
+                            # Mostrar PDF si está activado (agregar después de col3)
                             if st.session_state.get(f"mostrar_{ruta_completa}", False):
-                                with open(ruta_completa, "rb") as f:
-                                    base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-                                st.markdown(
-                                    f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px"></iframe>',
-                                    unsafe_allow_html=True
-                                )
+                                pdf_viewer(ruta_completa, width=700, height=600)
                             with col3:
                                 if st.checkbox("✓", key=f"pub_{ruta_completa}", label_visibility="hidden"):
                                     archivos_seleccionados_publicos.append(ruta_completa)
@@ -231,7 +226,6 @@ else:
 
                     with st.expander(f"📁 {carpeta}"):
                         if archivos:
-                            # ✅ DESPUÉS (con visualización):
                             for archivo in archivos:
                                 ruta_completa = os.path.join(ruta_carpeta, archivo)
                                 
@@ -241,16 +235,11 @@ else:
                                 with col2:
                                     if st.button("👁️ Ver", key=f"ver_res_{ruta_completa}"):
                                         st.session_state[f"mostrar_{ruta_completa}"] = not st.session_state.get(f"mostrar_{ruta_completa}", False)
-                                
+
                                 # Mostrar PDF si está activado
                                 if st.session_state.get(f"mostrar_{ruta_completa}", False):
-                                    with open(ruta_completa, "rb") as f:
-                                        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-                                    st.markdown(
-                                        f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px"></iframe>',
-                                        unsafe_allow_html=True
-                                    )
-                                
+                                    pdf_viewer(ruta_completa, width=700, height=600)
+
                                 with col3:
                                     if st.checkbox("✓", key=ruta_completa, label_visibility="hidden"):
                                         archivos_seleccionados.append(ruta_completa)
