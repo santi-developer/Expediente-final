@@ -302,7 +302,7 @@ else:
 
 
 
-CARPETA_FIJA = "14. Recurso de apelación o impugnación especial (desaparecer carpeta)"
+CARPETA_FIJA = "17. Recurso de apelación o impugnación especial (desaparecer carpeta)"
 RUTA_DESTINO = os.path.join(RUTA_BASE, CARPETA_FIJA)
 
 # 🎭 MODO DEMO (oculto)
