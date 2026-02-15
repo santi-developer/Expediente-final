@@ -106,7 +106,10 @@ with st.expander(f"📁 {EXPEDIENTE_NOMBRE}", expanded=False):
             # Asegurarnos que sea carpeta
             if os.path.isdir(ruta_carpeta):
 
-                archivos = os.listdir(ruta_carpeta)
+                archivos = [
+    archivo for archivo in os.listdir(ruta_carpeta)
+    if archivo.endswith(".pdf") and not archivo.startswith(".")
+]
 
                 # 👉 Regla especial
                 if carpeta == "17. Recurso de apelación o impugnación especial (desaparecer carpeta)" and len(archivos) == 0:
@@ -222,7 +225,10 @@ else:
             for carpeta in carpet:
                 ruta_carpeta = os.path.join(RUTA_BASE_1, carpeta)
                 if os.path.isdir(ruta_carpeta):
-                    archivos = os.listdir(ruta_carpeta)
+                    archivos = [
+    archivo for archivo in os.listdir(ruta_carpeta)
+    if archivo.endswith(".pdf") and not archivo.startswith(".")
+]
 
                     with st.expander(f"📁 {carpeta}"):
                         if archivos:
