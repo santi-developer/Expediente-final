@@ -3,7 +3,6 @@ import os
 import requests  
 import base64   
 from streamlit_pdf_viewer import pdf_viewer  # ← AGREGAR ESTA LÍNEA
-import tempfile 
 
 
 st.title("Expedientes 📂")
@@ -110,7 +109,7 @@ with st.expander(f"📁 {EXPEDIENTE_NOMBRE}", expanded=False):
                 archivos = os.listdir(ruta_carpeta)
 
                 # 👉 Regla especial
-                if carpeta == "14. Recurso de apelación o impugnación especial (desaparecer carpeta)" and len(archivos) == 0:
+                if carpeta == "17. Recurso de apelación o impugnación especial (desaparecer carpeta)" and len(archivos) == 0:
                     continue  # no mostrar si está vacía
 
                 # 📂 Carpeta desplegable
@@ -305,9 +304,6 @@ else:
 
 CARPETA_FIJA = "14. Recurso de apelación o impugnación especial (desaparecer carpeta)"
 RUTA_DESTINO = os.path.join(RUTA_BASE, CARPETA_FIJA)
-
-# 🔥 CREAR LA CARPETA SI NO EXISTE (clave en Streamlit Cloud)
-os.makedirs(RUTA_DESTINO, exist_ok=True)
 
 # 🎭 MODO DEMO (oculto)
 with st.expander("⚙️ Modo demostración (simulación)", expanded=False):
