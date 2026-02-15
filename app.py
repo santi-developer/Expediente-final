@@ -317,6 +317,7 @@ with st.expander("⚙️ Modo demostración (simulación)", expanded=False):
     if pdf_subido:
         ruta_archivo = os.path.join(RUTA_DESTINO, pdf_subido.name)
 
+        os.makedirs(RUTA_DESTINO, exist_ok=True)
         with open(ruta_archivo, "wb") as f:
             f.write(pdf_subido.getbuffer())
 
